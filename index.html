@@ -9,7 +9,7 @@
     <script src='//libtl.com/sdk.js' data-zone='10823841' data-sdk='show_10823841'></script>
     
     <style>
-        :root { --primary: #00e6ff; }
+        :root { --primary: #00e6ff; } /* তোর সেই গ্লোয়িং ব্লু */
 
         body {
             margin: 0;
@@ -20,111 +20,61 @@
             min-height: 100vh;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
+        header { text-align: center; margin-bottom: 25px; }
         header h1 {
-            margin: 0;
-            font-size: 28px;
-            text-shadow: 0 0 15px var(--primary);
+            margin: 0; font-size: 28px;
+            text-shadow: 0 0 15px var(--primary); /* টেক্সট লাইটিং */
             color: #fff;
-            letter-spacing: 1px;
         }
 
-        #user-display {
-            font-size: 14px;
-            color: #ccc;
-            margin-top: 5px;
-        }
-
-        #searchContainer {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
+        #searchContainer { margin-bottom: 20px; text-align: center; }
         #searchInput {
-            width: 90%;
-            max-width: 400px;
-            padding: 12px;
+            width: 90%; max-width: 400px; padding: 12px;
             background: rgba(0, 0, 0, 0.6);
             border: 2px solid var(--primary);
-            border-radius: 12px;
-            color: #fff;
-            box-shadow: 0 0 10px var(--primary);
-            outline: none;
+            border-radius: 12px; color: #fff;
+            box-shadow: 0 0 10px var(--primary); outline: none;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* দুইটা করে কলাম যেমন স্ক্রিনশটে আছে */
+            grid-template-columns: 1fr 1fr; /* দুই কলাম */
             gap: 15px;
         }
 
         .video-card {
-            border: 2.5px solid var(--primary); /* তোর সেই মোটা লাইটিং বর্ডার */
-            border-radius: 12px;
-            overflow: hidden;
-            background: #1a1a2e;
-            cursor: pointer;
-            box-shadow: 0 0 15px var(--primary); /* গ্লোয়িং ইফেক্ট */
-            position: relative;
+            border: 2.5px solid var(--primary); /* কার্ডের চারপাশে মোটা লাইটিং */
+            border-radius: 12px; overflow: hidden;
+            background: #1a1a2e; cursor: pointer;
+            box-shadow: 0 0 15px var(--primary); /* বর্ডারের গ্লো */
         }
 
-        .thumb {
-            width: 100%;
-            height: 100px; /* থাম্বনেইলের হাইট */
-            background-size: cover;
-            background-position: center;
-        }
-
-        .thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+        .thumb { width: 100%; height: 110px; overflow: hidden; }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         .info {
-            padding: 10px 5px;
-            text-align: center;
-            font-size: 12px;
-            font-weight: bold;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 5px; text-align: center;
+            font-size: 13px; font-weight: bold;
+            background: rgba(0, 0, 0, 0.6);
         }
 
-        /* ভিডিও প্লেয়ার মোডাল */
         #modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 1000;
         }
-
-        .close {
-            position: absolute;
-            right: 20px; top: 10px;
-            color: #fff; font-size: 35px; cursor: pointer;
-            z-index: 1001;
-        }
-
-        #player-container iframe {
-            width: 100%; height: 100vh; border: none;
-        }
+        .close { position: absolute; right: 20px; top: 10px; color: #fff; font-size: 35px; cursor: pointer; }
+        #player-container iframe { width: 100%; height: 100vh; border: none; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>EMON MAMA FILM</h1>
-        <div id="user-display">Welcome, <span id="first_name">User</span></div>
+        <div style="font-size: 12px; color: #ccc;">Welcome, <span id="first_name">User</span></div>
     </header>
 
     <div id="searchContainer">
-        <input type="text" id="searchInput" placeholder="Search Bachelor Point..." onkeyup="filterEpisodes()">
+        <input type="text" id="searchInput" placeholder="Search Episodes..." onkeyup="filterEpisodes()">
     </div>
 
     <div id="grid" class="grid"></div>
@@ -139,9 +89,7 @@
         tg.expand();
 
         const user = tg.initDataUnsafe.user;
-        if (user) {
-            document.getElementById('first_name').innerText = user.first_name || "User";
-        }
+        if (user) document.getElementById('first_name').innerText = user.first_name || "User";
 
         const linkGroup1 = "https://dl.springsfern.in/wt/AAAAAbjepQNS-EhPAAAfDg/0QhSeBvOSNAH27EEDv5Li3KraHhzxO59Tg_GuuP4VY8";
         const linkGroup2 = "https://dl.springsfern.in/wt/AAAAAbjepQNQKdhdAAAdlQ/2vdrL8Du9-Y0YaruJdjWVYoGfKUVQx87NpY6SFBwpZ0";
@@ -149,16 +97,12 @@
 
         const videos = [];
         for (let i = 57; i <= 80; i++) {
-            let currentLink = "";
-            if (i <= 64) currentLink = linkGroup1;
-            else if (i <= 72) currentLink = linkGroup2;
-            else currentLink = linkGroup3;
-
+            let currentLink = (i <= 64) ? linkGroup1 : (i <= 72) ? linkGroup2 : linkGroup3;
             videos.push({
                 id: i,
-                title: `Bachelor Point Episode ${i}`,
+                title: `Bachelor Point Ep ${i}`,
                 link: currentLink,
-                thumb: `thumbs/${i}.jpg` // তোর সেই থাম্বনেইল ফোল্ডার
+                thumb: `${i}.jpg` // 'thumbs/' ফোল্ডার কেটে দিয়েছি কারণ তোর ইমেজগুলো বাইরে আছে
             });
         }
 
@@ -166,7 +110,7 @@
             document.getElementById("grid").innerHTML = data.map(v => 
                 `<div class="video-card" onclick="handlePlayClick('${v.link}')">
                     <div class="thumb">
-                        <img src="${v.thumb}" onerror="this.src='https://via.placeholder.com/400x200/111/00e6ff?text=Episode+${v.id}'">
+                        <img src="${v.thumb}" onerror="this.src='https://via.placeholder.com/400x200/111/00e6ff?text=Ep+${v.id}'">
                     </div>
                     <div class="info">${v.title}</div>
                 </div>`
@@ -179,24 +123,15 @@
             load(filtered);
         }
 
-        // ১৫ সেকেন্ডের অ্যাড লজিক + ভিডিও প্লে
         function handlePlayClick(url) {
-            if (!url) return;
             if (typeof show_10823841 === 'function') {
-                show_10823841().then(() => { 
-                    openModal(url); 
-                }).catch(() => { 
-                    openModal(url); 
-                });
-            } else { 
-                openModal(url); 
-            }
+                show_10823841().then(() => { openModal(url); }).catch(() => { openModal(url); });
+            } else { openModal(url); }
         }
 
         function openModal(url) {
             document.getElementById("modal").style.display = "block";
-            document.getElementById("player-container").innerHTML = 
-                `<iframe src="${url}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+            document.getElementById("player-container").innerHTML = `<iframe src="${url}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
         }
 
         function closePlayer() {
