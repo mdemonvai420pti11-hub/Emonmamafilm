@@ -91,18 +91,41 @@
         const user = tg.initDataUnsafe.user;
         if (user) document.getElementById('first_name').innerText = user.first_name || "User";
 
-        const linkGroup1 = "https://dl.springsfern.in/wt/AAAAAbjepQNS-EhPAAAfDg/0QhSeBvOSNAH27EEDv5Li3KraHhzxO59Tg_GuuP4VY8";
-        const linkGroup2 = "https://dl.springsfern.in/wt/AAAAAbjepQNQKdhdAAAdlQ/2vdrL8Du9-Y0YaruJdjWVYoGfKUVQx87NpY6SFBwpZ0";
-        const linkGroup3 = "https://dl.springsfern.in/wt/AAAAAbjepQNR8Oa5AAAwLw/xGBH0nYS-HP7IasOY4uwTQ5QWNvqghgD5710WXhzqpE";
+        // পর্ব অনুযায়ী লিংক ম্যাপিং
+        const videoLinks = {
+            65: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAfuA/lYloQjMbcbg51sK0uNoynb4mw8GyY4oz1JUroy9q6Aw",
+            66: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAfwA/dNc_kW5C0lM96mnd23AsK0GWBcp69PrIuhHyI-sV8i4",
+            67: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAfwQ/RS4dE-cWTpzz67opBuppVuuwf_cjXjUUPl6LyIF3LrY",
+            68: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAfxQ/5pG-kiVvhfScGy88qUYkscXJJBAPwxUgcs2A5uUNBfw",
+            69: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAfxg/HDOqfvyXkn3HOi55Msf42KBbN6l-cGdVslpRUc6Yq8A",
+            70: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAfxw/lfK2muc1n_W7iNfV_uO4JGQzWlb7EWsoIMZ9EOKlPkQ",
+            71: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAfyA/dx9mg9bT4wKAJUwAPDOBKnRbZgpApKnKh06Q4y0PDUQ",
+            72: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAfyQ/Syx0q4VXl1iN1etYp0GYU94L8y1uYKnRY3Zdv2cyIfA",
+            73: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAfzw/SKJgmpazeLjd8VUstT63IbJJTr9HQhZ70URqxnWWp1w",
+            74: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAf0A/GT8kWhjPW33sht_aRZ71NYbmQIg-V5NshdJnz_gZa-0",
+            75: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAf0g/WDmahM44USvvNbNwuB-JugZKcC6pmNodhP6lciSU1GU",
+            76: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAf1A/DPkLP581mGnYU3sQYfWhUPp3N38OG_76Edsvq7S-7AQ",
+            77: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAf4Q/VMud8UP-G9cIUyHTbOznL0-nnvDqI1C8QKoFJugDWcs",
+            78: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAf4g/ft9yhiWxogGFhnsL6P8ISoDo0B-9xbsISE50CAVnpMc",
+            79: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAf4w/tTPIJ008Bud7hp0WDokEfUHinJgKofF_-7ZtUHL-rmI",
+            80: "https://dl.springsfern.in/wt/AAAAAcOP04BWiM2IAAAf5A/6EA3OqCAVzuUV5IWcOlCyF0-L-mp2lB6rrHbltZf2Dw",
+            81: "https://dl.tgxlink.eu.org/wt/AAAAAbjepQNTCcvxAAAfKw/_-HCKFc8l6wfSMD1yZl2Nxss9W32dgYsFaItbu6SFMc",
+            82: "https://dl.tgxlink.eu.org/wt/AAAAAbjepQNTCcvxAAAfPQ/hRltVnNLZcdbCnI59YYmArufAY2Rj-fQGPt64mcSQVA",
+            83: "https://dl.tgxlink.eu.org/wt/AAAAAbjepQNTCcvxAAAfQQ/jm8MnLCAf4uyM6qNU5jInZh_hF4lN0DHX6bIGUDcLK4",
+            84: "https://dl.tgxlink.eu.org/wt/AAAAAbjepQNTCcvxAAAfiA/aSPRsW4DDf9cHwTD4YHw7VKTbA-nie_v_F7zyCUzbUc",
+            85: "https://dl.tgxlink.eu.org/wt/AAAAAbjepQNTCcvxAAAf7w/OZ2bi81AYGGfFaq1WBNmvnmMjKH4l45RMYw5JM-GK30",
+            86: "https://dl.tgxlink.eu.org/wt/AAAAAbjepQNTCcvxAAAgAg/hQuRh8hueUIFdyP0La_s9G8r_7zltvQ0wL_vvpWi_S4",
+            87: "https://dl.tgxlink.eu.org/wt/AAAAAbjepQNTCcvxAAAgDw/DuaBLQyTMl5m1qiCxe0pW0Xm2qqQlp7TkjMRP70XuiI",
+            88: "https://dl.tgxlink.eu.org/wt/AAAAAbjepQNTCcvxAAAgGw/s4wqLcOdDUjtssgXmYnUx_iIS1NQcV1u7KqFL-x0HoQ"
+        };
 
         const videos = [];
-        for (let i = 57; i <= 80; i++) {
-            let currentLink = (i <= 64) ? linkGroup1 : (i <= 72) ? linkGroup2 : linkGroup3;
+        for (let i = 65; i <= 88; i++) {
             videos.push({
                 id: i,
                 title: `Bachelor Point Ep ${i}`,
-                link: currentLink,
-                thumb: `${i}.jpg` // 'thumbs/' ফোল্ডার কেটে দিয়েছি কারণ তোর ইমেজগুলো বাইরে আছে
+                link: videoLinks[i],
+                thumb: `${i}.jpg`
             });
         }
 
